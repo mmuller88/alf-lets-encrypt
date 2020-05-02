@@ -38,7 +38,7 @@ while [[ $1 == -* ]]; do
 done
 
 echo "Start docker compose"
-docker-compose up -d --build
+docker-compose up -d
 
 if [[ $WAIT_TIME -gt 0 ]]; then
   echo "Waiting for alfresco to boot ..."
