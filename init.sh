@@ -10,7 +10,7 @@ curl -L https://github.com/docker/compose/releases/download/1.25.5/docker-compos
 chmod +x /usr/local/bin/docker-compose
 echo finished docker compose download
 
-sleep 5
+ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 source /.nvm/nvm.sh
