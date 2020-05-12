@@ -1,10 +1,7 @@
-Content-Type: multipart/mixed; boundary="//"
-MIME-Version: 1.0
-
 #!/usr/bin/env bash
 
 yum update -y
-amazon-linux-extras install docker
+sudo yum install docker -y
 service docker start
 usermod -a -G docker ec2-user
 
