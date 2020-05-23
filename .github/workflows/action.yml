@@ -8,8 +8,7 @@ on:
 
 jobs:
 
-  build:
-
+  linux-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,8 +20,22 @@ jobs:
       run: |
         sed -i '\|logs/postgres|d' ./docker-compose.yml
         chmod +x start.sh && ./start.sh
+    - name: The job has failed
+      if: ${{ failure() }}
+      run: |
+        docker-compose config
+        docker-compose logs
 
+  windows-build:
+    runs-on: windows-latest
 
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2.1.1
+    - name: Execute start.sh
+      run: |
+        # sed -i '\|logs/postgres|d' ./docker-compose.yml
+        chmod +x start.sh && ./start.sh -wp 0
     - name: The job has failed
       if: ${{ failure() }}
       run: |
