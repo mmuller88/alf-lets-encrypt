@@ -1,0 +1,20 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps: 
+    - name: GitHub Script
+      uses: actions/github-script@v1.1.0
+      with:
+        # The script to run
+        script: ./start.sh
