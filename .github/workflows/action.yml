@@ -28,6 +28,12 @@ jobs:
     - name: Newman Action
       uses: matt-ball/newman-action@0.0.28
       with:
-        collection: test/alf-ec2.postman_collection.json
-    
+        workingDir: test
+        collection: alf-ec2.postman_collection.json
+        reporters: cli,json
+    - name: Postman Failed!
+      if: ${{ failure() }}
+      run: |
+        echo "Postman Failed!"
+        ls -l test
 
