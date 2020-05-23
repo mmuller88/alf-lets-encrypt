@@ -36,7 +36,7 @@ jobs:
       uses: actions/setup-node@v1.4.2
     - name: Execute start.sh
       shell: bash
-      run: .\start.sh
+      run: ./start.sh
     - name: The job has failed
       if: ${{ failure() }}
       run: |
