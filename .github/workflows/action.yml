@@ -36,4 +36,3 @@ jobs:
       run: |
         echo "Postman Failed!"
         ls -l test
-
