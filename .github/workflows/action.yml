@@ -13,5 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-     - name: Execute start.sh
-       run: ls
+    - name: Checkout
+      uses: actions/checkout@v2.1.1
+    - name: Execute start.sh
+      run: |
+        pwd
+        ls -l
+        chmod +x start.sh
+        ./start.sh
