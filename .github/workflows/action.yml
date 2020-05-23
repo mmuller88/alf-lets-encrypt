@@ -8,26 +8,8 @@ on:
 
 jobs:
 
-  # linux-build:
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2.1.1
-  #   - name: Setup Node.js environment
-  #     uses: actions/setup-node@v1.4.2
-  #   - name: Execute start.sh
-  #     run: |
-  #       sed -i '\|logs/postgres|d' ./docker-compose.yml
-  #       chmod +x start.sh && ./start.sh
-  #   - name: The job has failed
-  #     if: ${{ failure() }}
-  #     run: |
-  #       docker-compose config
-  #       docker-compose logs
-
-  windows-build:
-    runs-on: windows-latest
+  linux-build:
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
@@ -35,10 +17,12 @@ jobs:
     - name: Setup Node.js environment
       uses: actions/setup-node@v1.4.2
     - name: Execute start.sh
-      shell: bash
-      run: ./start.sh
+      run: |
+        sed -i '\|logs/postgres|d' ./docker-compose.yml
+        chmod +x start.sh && ./start.sh
     - name: The job has failed
       if: ${{ failure() }}
       run: |
         docker-compose config
         docker-compose logs
+
