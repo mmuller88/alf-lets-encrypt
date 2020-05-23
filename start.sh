@@ -24,7 +24,7 @@ set_wait_time(){
 
 # Defaults
 WAIT_TIME=500
-SERVER_NAME="localhost"
+SERVER_NAME="127.0.0.1"
 SERVER_PORT="80"
 
 while [[ $1 == -* ]]; do
