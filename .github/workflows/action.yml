@@ -29,5 +29,6 @@ jobs:
       uses: matt-ball/newman-action@0.0.28
       with:
         collection: test/alf-ec2.postman_collection.json
+        bail: 'true'
     
 
