@@ -32,10 +32,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2.1.1
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v1.4.2
     - name: Execute start.sh
       run: |
         # sed -i '\|logs/postgres|d' ./docker-compose.yml
-        chmod +x start.sh && ./start.sh -wp 0
+        chmod +x start.sh && ./start.sh
     - name: The job has failed
       if: ${{ failure() }}
       run: |
