@@ -27,6 +27,6 @@ jobs:
       name: Deploy with start script
       script: chmod +x start.sh && ./start.sh
 
-after_failure:
-  - docker-compose config
-  - docker-compose logs
+# after_failure:
+#   - docker-compose config
+#   - docker-compose logs
