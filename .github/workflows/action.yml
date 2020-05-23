@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2.1.1
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v1.4.2
+    # - name: Checkout
+    #   uses: actions/checkout@v2.1.1
+    # - name: Setup Node.js environment
+    #   uses: actions/setup-node@v1.4.2
     # - name: Execute start.sh
     #   run: |
     #     sed -i '\|logs/postgres|d' ./docker-compose.yml
@@ -25,6 +25,7 @@ jobs:
     #   run: |
     #     docker-compose config
     #     docker-compose logs
+    - uses: actions/checkout@master
     - name: Newman Action
       uses: matt-ball/newman-action@master
       with:
