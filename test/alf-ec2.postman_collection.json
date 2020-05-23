@@ -14,7 +14,7 @@
 						"id": "e561d8b5-efb8-4fb1-8372-6926b63ea3e6",
 						"exec": [
 							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(200);",
+							"    pm.response.to.have.status(201);",
 							"});"
 						],
 						"type": "text/javascript"
