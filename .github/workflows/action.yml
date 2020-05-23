@@ -27,10 +27,10 @@ jobs:
     #     docker-compose logs
     - name: Newman Action
       uses: matt-ball/newman-action@master
-      with:
-        workingDir: test
-        collection: alf-ec2.postman_collectionn.json
-        reporters: cli,json
+      # with:
+      #   workingDir: test
+      #   collection: alf-ec2.postman_collection.json
+      #   reporters: cli,json
     - name: Postman Failed!
       if: ${{ failure() }}
       run: |
