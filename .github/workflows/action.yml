@@ -13,8 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-    - name: GitHub Script
-      uses: actions/github-script@v1.1.0
-      with:
-        # The script to run
-        script: start.sh
+     - name: Execute start.sh
+       run: |
+         chmod +x ./start.sh
+         ./start.sh
