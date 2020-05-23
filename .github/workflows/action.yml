@@ -25,7 +25,7 @@ jobs:
       run: |
         docker-compose config
         docker-compose logs
-    - name: Newman Action
+    - name: Execute Postman Tests
       run: |
         npx newman run test/alf-ec2.postman_collection.json -r cli,json --reporter-json-export tmp/newman/report.json
     - name: Postman has failed!
