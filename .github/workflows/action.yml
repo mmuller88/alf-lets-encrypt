@@ -25,4 +25,9 @@ jobs:
       run: |
         docker-compose config
         docker-compose logs
+    - name: Newman Action
+      uses: matt-ball/newman-action@0.0.28
+      with:
+        collection: test/alf-ec2.postman_collection.json
+    
 
