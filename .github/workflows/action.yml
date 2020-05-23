@@ -12,31 +12,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # - name: Checkout
-    #   uses: actions/checkout@v2.1.1
-    # - name: Setup Node.js environment
-    #   uses: actions/setup-node@v1.4.2
-    # - name: Execute start.sh
-    #   run: |
-    #     sed -i '\|logs/postgres|d' ./docker-compose.yml
-    #     chmod +x start.sh && ./start.sh
-    # - name: The job has failed
-    #   if: ${{ failure() }}
-    #   run: |
-    #     docker-compose config
-    #     docker-compose logs
-    - uses: actions/checkout@master
+    - name: Checkout
+      uses: actions/checkout@v2.1.1
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v1.4.2
+    - name: Execute start.sh
+      run: |
+        sed -i '\|logs/postgres|d' ./docker-compose.yml
+        chmod +x start.sh && ./start.sh
+    - name: Docker Compose deployment has failed
+      if: ${{ failure() }}
+      run: |
+        docker-compose config
+        docker-compose logs
     - name: Newman Action
-      uses: matt-ball/newman-action@master
-      with:
-        collection: postman_collection.json
-        environment: postman_environment.json
-      # with:
-      #   workingDir: test
-      #   collection: alf-ec2.postman_collection.json
-      #   reporters: cli,json
-    - name: Postman Failed!
+      run: |
+        npx newman run test/alf-ec2.postman_collection.json -r cli,json --reporter-json-export tmp/newman/report.json
+    - name: Postman has failed!
       if: ${{ failure() }}
       run: |
         echo "Postman Failed!"
-        ls -l test
+        cat tmp/newman/report.json
