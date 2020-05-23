@@ -15,5 +15,7 @@ jobs:
     steps: 
      - name: Execute start.sh
        run: |
+         pwd
+         ls -l
          chmod +x ./start.sh
          ./start.sh
