@@ -17,4 +17,4 @@ jobs:
       uses: actions/github-script@v1.1.0
       with:
         # The script to run
-        script: ./start.sh
+        script: start.sh
