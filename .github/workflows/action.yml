@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Test Deployment
 
 on:
   push:
@@ -17,5 +17,5 @@ jobs:
        run: |
          pwd
          ls -l
-         chmod +x ./start.sh
-         ./start.sh
+         # chmod +x ./start.sh
+         # ./start.sh
