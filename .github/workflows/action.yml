@@ -35,9 +35,7 @@ jobs:
     - name: Setup Node.js environment
       uses: actions/setup-node@v1.4.2
     - name: Execute start.sh
-      run: |
-        # sed -i '\|logs/postgres|d' ./docker-compose.yml
-        .\start.sh
+      run: .\start.sh
     - name: The job has failed
       if: ${{ failure() }}
       run: |
