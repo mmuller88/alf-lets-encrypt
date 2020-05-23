@@ -22,9 +22,13 @@ set_wait_time(){
   WAIT_TIME=$1
 }
 
+set_host(){
+  SERVER_HOST=$1
+}
+
 # Defaults
 WAIT_TIME=500
-SERVER_NAME="localhost"
+SERVER_HOST="localhost"
 SERVER_PORT="80"
 
 while [[ $1 == -* ]]; do
@@ -33,17 +37,20 @@ while [[ $1 == -* ]]; do
     -wp|--windows-path)  set_windows_path; shift;;
     -d|--down)  down; shift;;
     -wt|--wait-time)  set_wait_time $2; shift 2;;
+    -sh|--server-host)  set_host $2; shift 2;;
     -*) echo "invalid option: $1" 1>&2; show_help; exit 1;;
   esac
 done
 
 echo "Start docker compose"
+export SERVER_HOST
+export SERVER_PORT
 docker-compose up -d
 
 if [[ $WAIT_TIME -gt 0 ]]; then
   echo "Waiting for alfresco to boot ..."
   WAIT_TIME=$(( ${WAIT_TIME} * 1000 ))
-  npx wait-on "http://${SERVER_NAME}:${SERVER_PORT}/alfresco/" -t "${WAIT_TIME}" -i 10000 -v
+  npx wait-on "http://${SERVER_HOST}:${SERVER_PORT}/alfresco/" -t "${WAIT_TIME}" -i 10000 -v
   if [ $? == 1 ]; then
     echo "Waiting failed -> exit 1"
     exit 1

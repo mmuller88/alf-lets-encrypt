@@ -24,13 +24,13 @@ services:
                 -Dsolr.secureComms=none
                 -Dsolr.baseUrl=/solr
                 -Dindex.subsystem.name=solr6
-                -Dalfresco.host=localhost
-                -Dalfresco.port=80
+                -Dalfresco.host=${SERVER_HOST}
+                -Dalfresco.port=${SERVER_PORT}
 
-                -Dshare.host=localhost
-                -Dshare.port=80
+                -Dshare.host=${SERVER_HOST}
+                -Dshare.port=${SERVER_PORT}
 
-                -Daos.baseUrlOverwrite=http://localhost/alfresco/aos
+                -Daos.baseUrlOverwrite=http://${SERVER_HOST}/alfresco/aos
                 -Dmessaging.broker.url="failover:(nio://activemq:61616)?timeout=3000&jms.useCompression=true"
                 -Ddeployment.method=DOCKER_COMPOSE
                 -Dcsrf.filter.enabled=false
@@ -195,6 +195,44 @@ services:
             # - ./config/cert/localhost.key:/etc/nginx/localhost.key
         ports:
             - 80:80
+
+    # HTTP proxy to provide HTTP Default port access to services
+    # SOLR API and SOLR Web Console are protected to avoid unauthenticated access
+    # proxy:
+    #   image: nginx:alpine
+    #   mem_limit: 128m
+    #   depends_on:
+    #     - alfresco
+    #     - solr6
+    #     - share
+    #     - content-app
+    #   volumes:
+    #     - ./config/nginx.conf:/etc/nginx/nginx.conf
+    #     - ./config/nginx.htpasswd:/etc/nginx/conf.d/nginx.htpasswd
+    #   environment:
+    #     - VIRTUAL_PORT=80
+    #     - VIRTUAL_HOST=example.com
+    #     - LETSENCRYPT_HOST=example.com
+    #     - LETSENCRYPT_EMAIL=damadden88@googlemail.com
+
+
+    # nginx-proxy:
+    #   image: jwilder/nginx-proxy
+    #   ports:
+    #     - "80:80"
+    #     - "443:443"
+    #   volumes:
+    #     - "/etc/nginx/vhost.d"
+    #     - "/usr/share/nginx/html"
+    #     - "/var/run/docker.sock:/tmp/docker.sock:ro"
+    #     - "/etc/nginx/certs"
+
+    # letsencrypt-nginx-proxy-companion:
+    #   image: jrcs/letsencrypt-nginx-proxy-companion
+    #   volumes:
+    #     - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    #   volumes_from:
+    #     - "nginx-proxy"
 
 
 
