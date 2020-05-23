@@ -26,11 +26,10 @@ jobs:
     #     docker-compose config
     #     docker-compose logs
     - name: Newman Action
-      - uses: actions/checkout@master
-      - uses: matt-ball/newman-action@master
-        with:
-          collection: postman_collection.json
-          environment: postman_environment.json
+      uses: matt-ball/newman-action@master
+      with:
+        collection: postman_collection.json
+        environment: postman_environment.json
       # with:
       #   workingDir: test
       #   collection: alf-ec2.postman_collection.json
