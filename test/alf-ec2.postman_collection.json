@@ -58,12 +58,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:80/alfresco/api/-default-/public/search/versions/1/search",
-					"protocol": "http",
+					"raw": "{{protocol}}://{{host}}:{{port}}/alfresco/api/-default-/public/search/versions/1/search",
+					"protocol": "{{protocol}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "80",
+					"port": "{{port}}",
 					"path": [
 						"alfresco",
 						"api",
