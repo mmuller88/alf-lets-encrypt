@@ -22,7 +22,7 @@ jobs:
       run: |
         sed -i '\|logs/postgres|d' ./docker-compose.yml
         mkdir -p data/solr-data
-        mkdir -p data/solr-data
+        mkdir -p logs
         chown -R runner:docker data/solr-data
         chown -R runner:docker logs
         chmod +x start.sh && ./start.sh
