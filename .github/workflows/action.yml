@@ -22,6 +22,9 @@ jobs:
       run: |
         # sed -i '\|logs/postgres|d' ./docker-compose.yml
         chmod +x start.sh && ./start.sh
+        ls -l
+        chown -R 33007 data/solr-data
+        chown -R 999 logs
     - name: Docker Compose deployment has failed
       if: ${{ failure() }}
       run: |
