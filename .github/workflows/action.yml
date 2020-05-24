@@ -23,8 +23,8 @@ jobs:
         sed -i '\|logs/postgres|d' ./docker-compose.yml
         mkdir -p data/solr-data
         mkdir -p logs
-        chown -R 33007 data/solr-data
-        chown -R 999 logs
+        sudo chown -R 33007 data/solr-data
+        sudo chown -R 999 logs
         chmod +x start.sh && ./start.sh
         ls -l
         # chown -R 33007 data/solr-data
