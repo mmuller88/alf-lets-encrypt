@@ -18,7 +18,7 @@ jobs:
       uses: actions/setup-node@v1.4.2
     - name: Execute start.sh
       run: |
-        sed -i '\|logs/postgres|d' ./docker-compose.yml
+        # sed -i '\|logs/postgres|d' ./docker-compose.yml
         chmod +x start.sh && ./start.sh
     - name: Docker Compose deployment has failed
       if: ${{ failure() }}

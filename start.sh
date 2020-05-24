@@ -47,6 +47,8 @@ export SERVER_HOST
 export SERVER_PORT
 docker-compose up -d
 
+sleep 5
+
 if [[ $WAIT_TIME -gt 0 ]]; then
   echo "Waiting for alfresco to boot ..."
   WAIT_TIME=$(( ${WAIT_TIME} * 1000 ))
@@ -56,3 +58,6 @@ if [[ $WAIT_TIME -gt 0 ]]; then
     exit 1
   fi
 fi
+
+sudo chown -R 33007 data/solr-data
+sudo chown -R 999 logs
