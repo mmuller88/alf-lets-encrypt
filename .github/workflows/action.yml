@@ -28,7 +28,7 @@ jobs:
         chmod +x start.sh && ./start.sh
         ls -l
         # chown -R 33007 data/solr-data
-        # chown -R 999 logs
+        # chown -R 999 logs/postgres
     - name: Docker Compose deployment has failed
       if: ${{ failure() }}
       run: |
