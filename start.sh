@@ -49,8 +49,8 @@ docker-compose up -d
 
 sleep 5
 
-# chown -R 33007 data/solr-data
-# chown -R 999 logs
+# sudo chown -R 33007 data/solr-data
+# sudo chown -R 999 logs
 
 if [[ $WAIT_TIME -gt 0 ]]; then
   echo "Waiting for alfresco to boot ..."
