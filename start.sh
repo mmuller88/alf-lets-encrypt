@@ -26,10 +26,19 @@ set_host(){
   SERVER_HOST=$1
 }
 
+set_port(){
+  SERVER_PORT=$1
+}
+
+set_protocol(){
+  PROTOCOL=$1
+}
+
 # Defaults
 WAIT_TIME=500
 SERVER_HOST="localhost"
 SERVER_PORT="80"
+PROTOCOL="http"
 
 while [[ $1 == -* ]]; do
   case "$1" in
@@ -38,6 +47,8 @@ while [[ $1 == -* ]]; do
     -d|--down)  down; shift;;
     -wt|--wait-time)  set_wait_time $2; shift 2;;
     -sh|--server-host)  set_host $2; shift 2;;
+    -sp|--server-port)  set_port $2; shift 2;;
+    -spr|--set-protocol)  set_protocol $2; shift 2;;
     -*) echo "invalid option: $1" 1>&2; show_help; exit 1;;
   esac
 done
@@ -55,7 +66,7 @@ sleep 5
 if [[ $WAIT_TIME -gt 0 ]]; then
   echo "Waiting for alfresco to boot ..."
   WAIT_TIME=$(( ${WAIT_TIME} * 1000 ))
-  npx wait-on "http://${SERVER_HOST}:${SERVER_PORT}/alfresco/" -t "${WAIT_TIME}" -i 10000 -v
+  npx wait-on "${PROTOCOL}://${SERVER_HOST}:${SERVER_PORT}/alfresco/" -t "${WAIT_TIME}" -i 10000 -v
   if [ $? == 1 ]; then
     echo "Waiting failed -> exit 1"
     exit 1
