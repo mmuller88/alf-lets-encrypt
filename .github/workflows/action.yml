@@ -42,3 +42,5 @@ jobs:
       run: |
         echo "Postman Failed!"
         cat tmp/newman/report.json
+        docker-compose config
+        docker-compose logs
