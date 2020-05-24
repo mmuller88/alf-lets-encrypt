@@ -56,6 +56,7 @@ done
 echo "Start docker compose"
 export SERVER_HOST
 export SERVER_PORT
+export PROTOCOL
 docker-compose up -d
 
 sleep 5
