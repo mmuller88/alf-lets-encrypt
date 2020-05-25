@@ -21,13 +21,11 @@ jobs:
       uses: actions/setup-node@v1.4.2
     - name: Execute start.sh
       run: |
-        # curl -s http://169.254.169.254/latest/meta-data/public-hostname
         mkdir -p data/solr-data
         mkdir -p logs/postgres
         sudo chown -R 33007 data/solr-data
         sudo chown -R 999 logs/postgres
         chmod +x start.sh && ./start.sh -spr https -sh a.alfpro.net -sp 443
-        ls -l
     - name: Docker Compose deployment has failed
       if: ${{ failure() }}
       run: |
